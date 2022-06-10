@@ -6,7 +6,7 @@ export function Widget() {
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
 
   return (
-    <Popover className='absolute bottom-5 right-5'>
+    <Popover className='absolute bottom-5 right-5 flex flex-col items-end'>
        <Popover.Panel> <WidgetForm/> </Popover.Panel>
         <Popover.Button className='bg-brand-500 text-white px-3 h-12 rounded-full flex items-center group ' >
         <ChatTeardropDots className='w-6 h-6'/>
