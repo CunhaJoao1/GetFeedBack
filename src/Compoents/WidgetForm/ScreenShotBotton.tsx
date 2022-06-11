@@ -5,7 +5,7 @@ import Loading from './Loading'
 
 
 type screenshotProps = {
-    screenShot: string;
+    screenShot: string | null;
     onScreenShotTook: (screenShot: string | null) => void;
 
 }
