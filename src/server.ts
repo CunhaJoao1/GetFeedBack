@@ -1,8 +1,13 @@
 import express from "express" 
 import { prisma } from "./prisma"
 import nodemailer from "nodemailer"
+import cors from "cors"
+
 const app = express()
 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 app.use(express.json())
 
     const transport = nodemailer.createTransport({
@@ -21,11 +26,10 @@ app.use(express.json())
         data:{
             type: req.body.type,
             comment: req.body.comment,
-            screeshot: req.body.screenshot,
+            screeshot: req.body.screeshot,
         }
         
     })
-
    await transport.sendMail({
         from: 'Equipe GetFeedback <suporte@feedback.com>',
         to: 'João Victor Cunha <joaovictorcunha8@gmail.com>',
@@ -34,6 +38,7 @@ app.use(express.json())
             `<div style="font-family:sans-serif;font-size: 16px; color:#111">`,
             `<p>Tipo do feedback: ${req.body.type}</p>`,
             `<p>Comentario: ${req.body.comment}</p>`,
+            `<img src="${req.body.screeshot}">`,
             `</div>`
         ].join('\n')
     })
